@@ -1,1 +1,1 @@
-# AngularDgEu
+# AngularDgEu Demo Project
