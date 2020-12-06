@@ -18,12 +18,24 @@ export class SalesComponent implements OnInit {
   productSaleHeaders: IProductSaleHeader[];
   headerRows: IProductSaleHeaderRow[] = [];
 
+  clonedProductSales: { [s: string]: IProductSale; } = {};
+
   constructor(private productSalesService: ProductSaleService) {
     this._productSalesService = productSalesService;
   }
 
   ngOnInit(): void {
-    this._productSalesService.getProductSales().subscribe({
+
+    this._productSalesService.getProductSales().then(data => {
+        this.productSales = data.data
+        this.productSaleHeaders = data.column;
+        console.log(this.productSales);
+        console.log(this.productSaleHeaders);
+        this.transformHeaders(this.productSaleHeaders);
+    });
+
+
+    /* this._productSalesService.getProductSales().subscribe({
 	    next: productSales => {
 		    this.productSales = productSales.data;
 		    this.productSaleHeaders = productSales.column;
@@ -31,9 +43,18 @@ export class SalesComponent implements OnInit {
 		    console.log(this.productSaleHeaders);
         this.transformHeaders(this.productSaleHeaders);
 		  }
-    });
+    }); */
 
   }
+
+  onRowEditInit(product: IProductSale) {
+          this.clonedProductSales[product.productID] = {...product};
+      }
+
+  onRowEditCancel(product: IProductSale, index: number) {
+              this.productSales[index] = this.clonedProductSales[product.productID];
+              delete this.productSales[product.productID];
+          }
 
   totalSales(productSale: IProductSale): number {
     return productSale.salesQ1 + productSale.salesQ2 + productSale.salesQ3 + productSale.salesQ4;

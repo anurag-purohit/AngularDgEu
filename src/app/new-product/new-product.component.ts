@@ -39,7 +39,7 @@ export class NewProductComponent  {
     }
 
     onSubmit() {
-      alert(JSON.stringify(this.productForm.value));
+
       let product : IProduct = {
             productId: this.productForm.value.productID,
           	productName: this.productForm.value.productName,

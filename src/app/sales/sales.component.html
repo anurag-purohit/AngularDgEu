@@ -1,7 +1,8 @@
 <div>{{pageTitle}}</div>
 
 
-<p-table #dt [value]="productSales" [globalFilterFields]="['productID', 'productName', 'salesQ1', 'salesQ2', 'salesQ3', 'salesQ4']">
+<p-table #dt [value]="productSales"   editMode="row"  dataKey="productID"
+         [globalFilterFields]="['productID', 'productName', 'salesQ1', 'salesQ2', 'salesQ3', 'salesQ4']">
   <ng-template pTemplate="caption">
     <div style="text-align: right">
       <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
@@ -20,14 +21,72 @@
     </tr>
 
   </ng-template>
-  <ng-template pTemplate="body" let-sale>
-    <tr>
-      <td>{{sale.productID}}</td>
-      <td>{{sale.productName}}</td>
-      <td>{{sale.salesQ1}}</td>
-      <td>{{sale.salesQ2}}</td>
-      <td>{{sale.salesQ3}}</td>
-      <td>{{sale.salesQ4}}</td>
+  <ng-template pTemplate="body" let-sale  let-editing="editing" let-ri="rowIndex">
+    <tr [pEditableRow]="sale">
+      <td pEditableColumn>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="sale.productID">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{sale.productID}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td pEditableColumn>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="sale.productName">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{sale.productName}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td pEditableColumn>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-inputNumber   [(ngModel)]="sale.salesQ1"> </p-inputNumber>
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{sale.salesQ1}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+
+      <td pEditableColumn>
+      <p-cellEditor>
+        <ng-template pTemplate="input">
+          <p-inputNumber   [(ngModel)]="sale.salesQ2"> </p-inputNumber>
+        </ng-template>
+        <ng-template pTemplate="output">
+          {{sale.salesQ2}}
+        </ng-template>
+      </p-cellEditor>
+    </td>
+
+      <td pEditableColumn>
+      <p-cellEditor>
+        <ng-template pTemplate="input">
+          <p-inputNumber   [(ngModel)]="sale.salesQ3"> </p-inputNumber>
+        </ng-template>
+        <ng-template pTemplate="output">
+          {{sale.salesQ3}}
+        </ng-template>
+      </p-cellEditor>
+    </td>
+
+      <td pEditableColumn>
+      <p-cellEditor>
+        <ng-template pTemplate="input">
+          <p-inputNumber   [(ngModel)]="sale.salesQ4"> </p-inputNumber>
+        </ng-template>
+        <ng-template pTemplate="output">
+          {{sale.salesQ4}}
+        </ng-template>
+      </p-cellEditor>
+    </td>
+
       <td>{{totalSales(sale)}}</td>
     </tr>
   </ng-template>

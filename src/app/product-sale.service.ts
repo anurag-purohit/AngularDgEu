@@ -14,12 +14,17 @@ export class ProductSaleService {
 
   private productSalesUrl = "api/sales/potato_sales.json";
   //$contactsChange = new Subject<any>();
-  //private productSaleTable : IProductSaleTable = {};
+  private productSaleTable : IProductSaleTable = null;
   constructor(private http: HttpClient) { }
 
-  getProductSales(): Observable<IProductSaleTable> {
+  getProductSales(): Promise<IProductSaleTable> {
 
-	  return this.http.get<IProductSaleTable>(this.productSalesUrl);
+	  return this.http.get<IProductSaleTable>(this.productSalesUrl).toPromise()
+                                 .then(res => <IProductSaleTable>res)
+                                  .then(data => {
+                                      this.productSaleTable = data;
+                                      return data;
+                                  });
   }
 
   addProduct(product: IProduct): void {
@@ -31,5 +36,8 @@ export class ProductSaleService {
           salesQ3: 0,
           salesQ4: 0
     };
+    if(this.productSaleTable != null) {
+      this.productSaleTable.data.push(productSale);
+    }
   }
 }
