@@ -76,4 +76,19 @@ export class SalesComponent implements OnInit {
     console.log(this.headerRows);
   }
 
+  add() {
+          this.productSales.push(
+          {     productID: 0,
+                productName: "string",
+                salesQ1: 0,
+                salesQ2: 0,
+                salesQ3: 0,
+                salesQ4: 0}
+           );
+          setTimeout(()=>{
+              let buttons = document.getElementsByClassName("ui-button-info");
+              buttons[buttons.length - 1].dispatchEvent(new Event('click'));
+          },50);
+      }
+
 }

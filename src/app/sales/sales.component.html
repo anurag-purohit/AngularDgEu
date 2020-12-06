@@ -1,6 +1,6 @@
 <div>{{pageTitle}}</div>
 
-
+<button (click)="add()">Add</button>
 <p-table #dt [value]="productSales"   editMode="row"  dataKey="productID"
          [globalFilterFields]="['productID', 'productName', 'salesQ1', 'salesQ2', 'salesQ3', 'salesQ4']">
   <ng-template pTemplate="caption">
