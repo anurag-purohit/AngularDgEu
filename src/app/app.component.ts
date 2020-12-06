@@ -32,7 +32,7 @@ export class AppComponent {
       }
 
       this.menuItems = [
-        {label: 'Welcome', icon: 'fa fa-home', routerLink: ['/'], command: (event) => handleSelected(event)},
+        {label: 'Welcome', icon: 'fa fa-home', routerLink: ['/welcome'], command: (event) => handleSelected(event)},
         {label: 'sales', icon: 'fa fa-calendar', routerLink: ['/sales'], command: (event) => handleSelected(event)},
         {label: 'Add New Product', icon: 'fa fa-clock-o', routerLink: ['/products/add'], command: (event) => handleSelected(event)}
       ]

@@ -3,14 +3,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { SalesComponent } from './sales/sales.component';
 import { NewProductComponent } from './new-product/new-product.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './security/login/login.component';
+import { AuthGuard } from './security/auth.guard';
 
 
 const routes: Routes = [
-      { path: 'sales', component: SalesComponent },
-      { path: 'products/add', component: NewProductComponent },
-      { path: 'welcome', component: WelcomeComponent },
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+      { path: 'login',
+       component: LoginComponent },
+      { path: 'sales',
+       component: SalesComponent,
+        canActivate: [AuthGuard]},
+      { path: 'products/add',
+       component: NewProductComponent,
+        canActivate: [AuthGuard]},
+      { path: 'welcome',
+       component: WelcomeComponent,
+        canActivate: [AuthGuard]},
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: '**', redirectTo: 'login', pathMatch: 'full' }
     ];
 
 @NgModule({

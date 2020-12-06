@@ -19,6 +19,7 @@ import { NewProductComponent } from './new-product/new-product.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FielderrorsComponent } from './fielderrors/fielderrors.component';
+import { LoginComponent } from './security/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FielderrorsComponent } from './fielderrors/fielderrors.component';
     NewProductComponent,
     ToolbarComponent,
     WelcomeComponent,
-    FielderrorsComponent
+    FielderrorsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
