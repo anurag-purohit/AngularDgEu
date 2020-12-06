@@ -1,0 +1,52 @@
+<p>new-product works!</p>
+
+
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="ui-g">
+  <p-panel header="Add Product" class="ui-g-12">
+
+    <div class="ui-g">
+
+      <label for="productID" class="ui-g-12 ui-md-2">Product Id*</label>
+
+      <p-inputNumber id="productID" formControlName="productID"
+                   class="ui-g-12 ui-md-5"></p-inputNumber>
+      <div class="ui-g-12 ui-md-5">
+        <at-fielderrors [form]="productForm" field="productID" nicename="Product ID"> </at-fielderrors>
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <label for="productName" class="ui-g-12 ui-md-2">Product Name*</label>
+      <input type="text" pInputText  id="productName" formControlName="productName" class="ui-g-12 ui-md-5"/>
+      <div class="ui-g-12 ui-md-5">
+        <at-fielderrors [form]="productForm" field="productName" nicename="Product Name"> </at-fielderrors>
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <label for="manager1" class="ui-g-12 ui-md-2">Manager</label>
+      <input type="text" pInputText id="manager1" formControlName="manager"
+                   placeholder="Please enter Manager name"  class="ui-g-12 ui-md-5"/>
+      <div class="ui-g-12 ui-md-5">
+        <at-fielderrors [form]="productForm" field="manager" nicename="Manager name"> </at-fielderrors>
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <label for="salesStartDate" class="ui-g-12 ui-md-2">Sales Start Date</label>
+      <p-calendar [showIcon]="true" id="salesStartDate" formControlName="salesStartDate" dateFormat="dd/mm/yy"
+                  class="ui-g-12 ui-md-5" [minDate]="minProductDate"></p-calendar>
+      <div class="ui-g-12 ui-md-5">
+
+        <at-fielderrors [form]="productForm" field="salesStartDate" nicename="Start Date"> </at-fielderrors>
+
+      </div>
+    </div>
+
+
+    <button pButton type="submit" [disabled]="hasFormErrors()" label="Save" icon="fa fa-floppy-o"></button>
+
+  </p-panel>
+</form>
+
